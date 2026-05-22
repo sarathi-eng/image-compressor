@@ -1,7 +1,7 @@
 "use client";
 
 import JSZip from "jszip";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState, useCallback, memo } from "react";
 
 type Status = "idle" | "compressing" | "done" | "error";
 
@@ -69,16 +69,93 @@ const getOutputName = (name: string, mimeType?: string) => {
   return `${base}-compressed.${ext}`;
 };
 
+// ⚡ Bolt Optimization:
+// Extracted `FileCard` into a memoized component.
+// Impact: Prevents O(n²) rendering complexity during batch processing.
+// When one item updates its status (e.g. from "compressing" to "done"),
+// the other items in the grid will no longer re-render.
+// Images now also use native lazy loading and async decoding to prevent main thread blocking.
+const FileCard = memo(({
+  item,
+  onCompress,
+  onDownload,
+  onRemove
+}: {
+  item: FileItem;
+  onCompress: (item: FileItem) => void;
+  onDownload: (item: FileItem) => void;
+  onRemove: (item: FileItem) => void;
+}) => {
+  return (
+    <div className="file-card">
+      <img loading="lazy" decoding="async" src={item.originalUrl} alt={item.file.name} />
+      {item.compressedUrl ? (
+        <img
+          loading="lazy"
+          decoding="async"
+          src={item.compressedUrl}
+          alt={`${item.file.name} compressed`}
+        />
+      ) : null}
+      <div className="meta">
+        <span className="filename" title={item.file.name}>{item.file.name}</span>
+        <div className="sizes">
+          <span>Original: {formatBytes(item.originalSize)}</span>
+          {item.compressedSize && (
+            <>
+              <span> → Compressed: {formatBytes(item.compressedSize)}</span>
+              <span className="savings">
+                 ({((1 - item.compressedSize / item.originalSize) * 100).toFixed(1)}% saved)
+              </span>
+            </>
+          )}
+        </div>
+        <span className={`status ${item.status}`}>Status: {item.status}</span>
+        {item.error ? <span className="error-text">{item.error}</span> : null}
+      </div>
+      <div className="actions">
+        <button
+          type="button"
+          className="secondary"
+          onClick={() => onCompress(item)}
+          disabled={item.status === "compressing"}
+        >
+          {item.status === "compressing" ? "Working..." : "Compress"}
+        </button>
+        <button
+          type="button"
+          onClick={() => onDownload(item)}
+          disabled={!item.compressedBlob}
+        >
+          Download
+        </button>
+        <button
+          type="button"
+          className="secondary"
+          onClick={() => onRemove(item)}
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  );
+});
+
 export default function Home() {
   const [items, dispatch] = useReducer(reducer, []);
   const [quality, setQuality] = useState(75);
   const [isCompressing, setIsCompressing] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const itemsRef = useRef<FileItem[]>(items);
+  const qualityRef = useRef(quality);
 
   useEffect(() => {
     itemsRef.current = items;
   }, [items]);
+
+  useEffect(() => {
+    qualityRef.current = quality;
+  }, [quality]);
 
   useEffect(() => {
     return () => {
@@ -121,13 +198,13 @@ export default function Home() {
     }
   };
 
-  const removeItem = (item: FileItem) => {
+  const removeItem = useCallback((item: FileItem) => {
     URL.revokeObjectURL(item.originalUrl);
     if (item.compressedUrl) {
       URL.revokeObjectURL(item.compressedUrl);
     }
     dispatch({ type: "remove", id: item.id });
-  };
+  }, []);
 
   const clearAll = () => {
     items.forEach((item) => {
@@ -139,7 +216,7 @@ export default function Home() {
     dispatch({ type: "clear" });
   };
 
-  const compressItem = async (item: FileItem) => {
+  const compressItem = useCallback(async (item: FileItem) => {
     dispatch({
       type: "update",
       id: item.id,
@@ -152,26 +229,36 @@ export default function Home() {
 
     const formData = new FormData();
     formData.append("file", item.file);
-    formData.append("quality", String(quality));
+    formData.append("quality", String(qualityRef.current));
 
-    const response = await fetch("/api/compress", {
-      method: "POST",
-      body: formData
-    });
+    try {
+      const response = await fetch("/api/compress", {
+        method: "POST",
+        body: formData
+      });
 
-    if (!response.ok) {
-      throw new Error(`Compression failed (${response.status})`);
+      if (!response.ok) {
+        throw new Error(`Compression failed (${response.status})`);
+      }
+
+      const blob = await response.blob();
+      const compressedUrl = URL.createObjectURL(blob);
+
+      dispatch({
+        type: "update",
+        id: item.id,
+        patch: { compressedBlob: blob, compressedUrl, compressedSize: blob.size, status: "done" }
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Compression failed";
+      dispatch({
+        type: "update",
+        id: item.id,
+        patch: { status: "error", error: message }
+      });
+      throw error;
     }
-
-    const blob = await response.blob();
-    const compressedUrl = URL.createObjectURL(blob);
-
-    dispatch({
-      type: "update",
-      id: item.id,
-      patch: { compressedBlob: blob, compressedUrl, compressedSize: blob.size, status: "done" }
-    });
-  };
+  }, []);
 
   const compressAll = async () => {
     if (items.length === 0) return;
@@ -219,13 +306,13 @@ export default function Home() {
     URL.revokeObjectURL(url);
   };
 
-  const downloadSingle = (item: FileItem) => {
+  const downloadSingle = useCallback((item: FileItem) => {
     if (!item.compressedUrl || !item.compressedBlob) return;
     const link = document.createElement("a");
     link.href = item.compressedUrl;
     link.download = getOutputName(item.file.name, item.compressedBlob.type);
     link.click();
-  };
+  }, []);
 
   return (
     <main>
@@ -319,55 +406,13 @@ export default function Home() {
 
         <div className="file-grid">
           {items.map((item) => (
-            <div className="file-card" key={item.id}>
-              <img src={item.originalUrl} alt={item.file.name} />
-              {item.compressedUrl ? (
-                <img
-                  src={item.compressedUrl}
-                  alt={`${item.file.name} compressed`}
-                />
-              ) : null}
-              <div className="meta">
-                <span className="filename" title={item.file.name}>{item.file.name}</span>
-                <div className="sizes">
-                  <span>Original: {formatBytes(item.originalSize)}</span>
-                  {item.compressedSize && (
-                    <>
-                      <span> → Compressed: {formatBytes(item.compressedSize)}</span>
-                      <span className="savings">
-                         ({((1 - item.compressedSize / item.originalSize) * 100).toFixed(1)}% saved)
-                      </span>
-                    </>
-                  )}
-                </div>
-                <span className={`status ${item.status}`}>Status: {item.status}</span>
-                {item.error ? <span className="error-text">{item.error}</span> : null}
-              </div>
-              <div className="actions">
-                <button
-                  type="button"
-                  className="secondary"
-                  onClick={() => compressItem(item)}
-                  disabled={item.status === "compressing"}
-                >
-                  {item.status === "compressing" ? "Working..." : "Compress"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => downloadSingle(item)}
-                  disabled={!item.compressedBlob}
-                >
-                  Download
-                </button>
-                <button
-                  type="button"
-                  className="secondary"
-                  onClick={() => removeItem(item)}
-                >
-                  Remove
-                </button>
-              </div>
-            </div>
+            <FileCard
+              key={item.id}
+              item={item}
+              onCompress={compressItem}
+              onDownload={downloadSingle}
+              onRemove={removeItem}
+            />
           ))}
         </div>
       </section>
