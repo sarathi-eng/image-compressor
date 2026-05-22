@@ -229,133 +229,167 @@ export default function Home() {
 
   return (
     <main>
-      <h1>Image Compressor</h1>
-      <p>Upload images, tune quality, and download compressed versions.</p>
+      <header className="header">
+        <h2 style={{ margin: 0 }}>CompressPro</h2>
+        <nav className="nav-links">
+          <a href="#features" style={{ color: '#e6e6e6', textDecoration: 'none' }}>Features</a>
+          <a href="#compressor" style={{ color: '#e6e6e6', textDecoration: 'none' }}>Tool</a>
+        </nav>
+      </header>
 
-      <div className="panel">
-        <div className="controls">
-          <label>
-            <strong>Quality:</strong> {quality}
-          </label>
-          <input
-            type="range"
-            min={10}
-            max={100}
-            value={quality}
-            onChange={(event) => setQuality(Number(event.target.value))}
-          />
-          <div className="preset-buttons">
-            <button type="button" onClick={() => setQuality(40)}>
-              🔥 Max Compression
+      <section className="hero">
+        <h1>Compress Images in Seconds</h1>
+        <p>Optimize your workflow. Upload images, instantly reduce their size while maintaining quality, and download fast.</p>
+        <a href="#compressor" className="button">
+          Get Started
+        </a>
+      </section>
+
+      <section className="tool-section" id="compressor">
+        <div className="panel">
+          <div className="controls">
+            <label>
+              <strong>Quality:</strong> {quality}
+            </label>
+            <input
+              type="range"
+              min={10}
+              max={100}
+              value={quality}
+              onChange={(event) => setQuality(Number(event.target.value))}
+            />
+            <div className="preset-buttons">
+              <button type="button" onClick={() => setQuality(40)}>
+                🔥 Max Compression
+              </button>
+              <button type="button" onClick={() => setQuality(75)}>
+                ⚖️ Balanced
+              </button>
+              <button type="button" onClick={() => setQuality(90)}>
+                💎 High Quality
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={`panel dropzone ${isDragging ? 'active' : ''}`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          <p className="dropzone-text">Drag and drop images here, or click to select</p>
+          <div className="controls center">
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              id="file-upload"
+              className="hidden-input"
+              onChange={(event) => addFiles(event.target.files)}
+            />
+            <label htmlFor="file-upload" className="button">
+              Select Files
+            </label>
+            <button
+              type="button"
+              onClick={compressAll}
+              disabled={items.length === 0 || isCompressing}
+            >
+              {isCompressing ? "Compressing..." : "Compress All"}
             </button>
-            <button type="button" onClick={() => setQuality(75)}>
-              ⚖️ Balanced
+            <button
+              type="button"
+              className="secondary"
+              onClick={downloadZip}
+              disabled={items.every((item) => !item.compressedBlob)}
+            >
+              Download ZIP
             </button>
-            <button type="button" onClick={() => setQuality(90)}>
-              💎 High Quality
+            <button
+              type="button"
+              className="secondary"
+              onClick={clearAll}
+              disabled={items.length === 0}
+            >
+              Clear
             </button>
           </div>
         </div>
-      </div>
 
-      <div
-        className={`panel dropzone ${isDragging ? 'active' : ''}`}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        <p className="dropzone-text">Drag and drop images here, or click to select</p>
-        <div className="controls center">
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            id="file-upload"
-            className="hidden-input"
-            onChange={(event) => addFiles(event.target.files)}
-          />
-          <label htmlFor="file-upload" className="button">
-            Select Files
-          </label>
-          <button
-            type="button"
-            onClick={compressAll}
-            disabled={items.length === 0 || isCompressing}
-          >
-            {isCompressing ? "Compressing..." : "Compress All"}
-          </button>
-          <button
-            type="button"
-            className="secondary"
-            onClick={downloadZip}
-            disabled={items.every((item) => !item.compressedBlob)}
-          >
-            Download ZIP
-          </button>
-          <button
-            type="button"
-            className="secondary"
-            onClick={clearAll}
-            disabled={items.length === 0}
-          >
-            Clear
-          </button>
-        </div>
-      </div>
-
-      <div className="file-grid">
-        {items.map((item) => (
-          <div className="file-card" key={item.id}>
-            <img src={item.originalUrl} alt={item.file.name} />
-            {item.compressedUrl ? (
-              <img
-                src={item.compressedUrl}
-                alt={`${item.file.name} compressed`}
-              />
-            ) : null}
-            <div className="meta">
-              <span className="filename" title={item.file.name}>{item.file.name}</span>
-              <div className="sizes">
-                <span>Original: {formatBytes(item.originalSize)}</span>
-                {item.compressedSize && (
-                  <>
-                    <span> → Compressed: {formatBytes(item.compressedSize)}</span>
-                    <span className="savings">
-                       ({((1 - item.compressedSize / item.originalSize) * 100).toFixed(1)}% saved)
-                    </span>
-                  </>
-                )}
+        <div className="file-grid">
+          {items.map((item) => (
+            <div className="file-card" key={item.id}>
+              <img src={item.originalUrl} alt={item.file.name} />
+              {item.compressedUrl ? (
+                <img
+                  src={item.compressedUrl}
+                  alt={`${item.file.name} compressed`}
+                />
+              ) : null}
+              <div className="meta">
+                <span className="filename" title={item.file.name}>{item.file.name}</span>
+                <div className="sizes">
+                  <span>Original: {formatBytes(item.originalSize)}</span>
+                  {item.compressedSize && (
+                    <>
+                      <span> → Compressed: {formatBytes(item.compressedSize)}</span>
+                      <span className="savings">
+                         ({((1 - item.compressedSize / item.originalSize) * 100).toFixed(1)}% saved)
+                      </span>
+                    </>
+                  )}
+                </div>
+                <span className={`status ${item.status}`}>Status: {item.status}</span>
+                {item.error ? <span className="error-text">{item.error}</span> : null}
               </div>
-              <span className={`status ${item.status}`}>Status: {item.status}</span>
-              {item.error ? <span className="error-text">{item.error}</span> : null}
+              <div className="actions">
+                <button
+                  type="button"
+                  className="secondary"
+                  onClick={() => compressItem(item)}
+                  disabled={item.status === "compressing"}
+                >
+                  {item.status === "compressing" ? "Working..." : "Compress"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => downloadSingle(item)}
+                  disabled={!item.compressedBlob}
+                >
+                  Download
+                </button>
+                <button
+                  type="button"
+                  className="secondary"
+                  onClick={() => removeItem(item)}
+                >
+                  Remove
+                </button>
+              </div>
             </div>
-            <div className="actions">
-              <button
-                type="button"
-                className="secondary"
-                onClick={() => compressItem(item)}
-                disabled={item.status === "compressing"}
-              >
-                {item.status === "compressing" ? "Working..." : "Compress"}
-              </button>
-              <button
-                type="button"
-                onClick={() => downloadSingle(item)}
-                disabled={!item.compressedBlob}
-              >
-                Download
-              </button>
-              <button
-                type="button"
-                className="secondary"
-                onClick={() => removeItem(item)}
-              >
-                Remove
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="features" id="features">
+        <div className="feature-card">
+          <h3>⚡ Fast & Local</h3>
+          <p>Processing is fast and efficient. No bloated uploads required, your privacy is guaranteed.</p>
+        </div>
+        <div className="feature-card">
+          <h3>💎 High Quality</h3>
+          <p>We use advanced compression algorithms to ensure your images stay looking perfect.</p>
+        </div>
+        <div className="feature-card">
+          <h3>📦 Batch Support</h3>
+          <p>Drag and drop multiple images at once. Compress them all in one click and download as a ZIP.</p>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <p>© {new Date().getFullYear()} CompressPro. All rights reserved.</p>
+      </footer>
     </main>
   );
 }
