@@ -9,11 +9,22 @@ type FileItem = {
   id: string;
   file: File;
   originalUrl: string;
+  originalSize: number;
   compressedUrl?: string;
   compressedBlob?: Blob;
+  compressedSize?: number;
   status: Status;
   error?: string;
 };
+
+function formatBytes(bytes: number, decimals = 2) {
+  if (!+bytes) return '0 Bytes';
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+}
 
 type Action =
   | { type: "add"; items: FileItem[] }
@@ -62,6 +73,7 @@ export default function Home() {
   const [items, dispatch] = useReducer(reducer, []);
   const [quality, setQuality] = useState(75);
   const [isCompressing, setIsCompressing] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const itemsRef = useRef<FileItem[]>(items);
 
   useEffect(() => {
@@ -84,10 +96,29 @@ export default function Home() {
     const newItems: FileItem[] = Array.from(files).map((file) => ({
       id: crypto.randomUUID(),
       file,
+      originalSize: file.size,
       originalUrl: URL.createObjectURL(file),
       status: "idle"
     }));
     dispatch({ type: "add", items: newItems });
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      addFiles(e.dataTransfer.files);
+    }
   };
 
   const removeItem = (item: FileItem) => {
@@ -138,7 +169,7 @@ export default function Home() {
     dispatch({
       type: "update",
       id: item.id,
-      patch: { compressedBlob: blob, compressedUrl, status: "done" }
+      patch: { compressedBlob: blob, compressedUrl, compressedSize: blob.size, status: "done" }
     });
   };
 
@@ -227,14 +258,25 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="panel">
-        <div className="controls">
+      <div
+        className={`panel dropzone ${isDragging ? 'active' : ''}`}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
+        <p className="dropzone-text">Drag and drop images here, or click to select</p>
+        <div className="controls center">
           <input
             type="file"
             multiple
             accept="image/*"
+            id="file-upload"
+            className="hidden-input"
             onChange={(event) => addFiles(event.target.files)}
           />
+          <label htmlFor="file-upload" className="button">
+            Select Files
+          </label>
           <button
             type="button"
             onClick={compressAll}
@@ -272,9 +314,20 @@ export default function Home() {
               />
             ) : null}
             <div className="meta">
-              <span>{item.file.name}</span>
-              <span>Status: {item.status}</span>
-              {item.error ? <span>{item.error}</span> : null}
+              <span className="filename" title={item.file.name}>{item.file.name}</span>
+              <div className="sizes">
+                <span>Original: {formatBytes(item.originalSize)}</span>
+                {item.compressedSize && (
+                  <>
+                    <span> → Compressed: {formatBytes(item.compressedSize)}</span>
+                    <span className="savings">
+                       ({((1 - item.compressedSize / item.originalSize) * 100).toFixed(1)}% saved)
+                    </span>
+                  </>
+                )}
+              </div>
+              <span className={`status ${item.status}`}>Status: {item.status}</span>
+              {item.error ? <span className="error-text">{item.error}</span> : null}
             </div>
             <div className="actions">
               <button
