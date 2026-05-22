@@ -27,21 +27,29 @@ export async function POST(req: Request) {
   let contentType = file.type || "image/jpeg";
   let outputBuffer: Buffer;
 
-  if (contentType === "image/png") {
-    outputBuffer = await image.png({ quality }).toBuffer();
-  } else if (contentType === "image/webp") {
-    outputBuffer = await image.webp({ quality }).toBuffer();
-  } else if (contentType === "image/avif") {
-    outputBuffer = await image.avif({ quality }).toBuffer();
-  } else {
-    outputBuffer = await image.jpeg({ quality, mozjpeg: true }).toBuffer();
-    contentType = "image/jpeg";
-  }
-
-  return new Response(outputBuffer, {
-    headers: {
-      "Content-Type": contentType,
-      "Cache-Control": "no-store"
+  try {
+    if (contentType === "image/png") {
+      outputBuffer = await image.png({ quality }).toBuffer();
+    } else if (contentType === "image/webp") {
+      outputBuffer = await image.webp({ quality }).toBuffer();
+    } else if (contentType === "image/avif") {
+      outputBuffer = await image.avif({ quality }).toBuffer();
+    } else {
+      outputBuffer = await image.jpeg({ quality, mozjpeg: true }).toBuffer();
+      contentType = "image/jpeg";
     }
-  });
+
+    return new Response(new Uint8Array(outputBuffer), {
+      headers: {
+        "Content-Type": contentType,
+        "Cache-Control": "no-store"
+      }
+    });
+  } catch (error) {
+    console.error("Compression error:", error);
+    return new Response(
+      error instanceof Error ? error.message : "Invalid image format",
+      { status: 400 }
+    );
+  }
 }

@@ -51,7 +51,7 @@ p {
   flex-wrap: wrap;
 }
 
-button {
+button, .button {
   background: #2b6df3;
   border: none;
   color: white;
@@ -59,15 +59,55 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s;
+  display: inline-block;
+  text-align: center;
 }
 
-button.secondary {
+button:hover:not(:disabled), .button:hover:not(:disabled) {
+  background: #1c5ce6;
+  transform: translateY(-1px);
+}
+
+button.secondary, .button.secondary {
   background: #2a2f3a;
 }
 
-button:disabled {
+button.secondary:hover:not(:disabled), .button.secondary:hover:not(:disabled) {
+  background: #363c4a;
+}
+
+button:disabled, .button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.dropzone {
+  border: 2px dashed #2a2f3a;
+  padding: 32px;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.dropzone.active {
+  border-color: #2b6df3;
+  background: rgba(43, 109, 243, 0.05);
+}
+
+.dropzone-text {
+  font-size: 16px;
+  margin-bottom: 24px;
+  color: #b6bcc8;
+  pointer-events: none;
+}
+
+.controls.center {
+  justify-content: center;
 }
 
 .file-grid {
@@ -84,6 +124,13 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.file-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .file-card img {
@@ -100,6 +147,47 @@ button:disabled {
   gap: 6px;
   font-size: 13px;
   color: #a7aebd;
+}
+
+.filename {
+  font-weight: 600;
+  color: #e6e6e6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.savings {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.status {
+  text-transform: capitalize;
+}
+
+.status.done {
+  color: #4ade80;
+}
+
+.status.compressing {
+  color: #60a5fa;
+}
+
+.status.error {
+  color: #f87171;
+}
+
+.error-text {
+  color: #f87171;
+  font-size: 12px;
 }
 
 .file-card .actions {
