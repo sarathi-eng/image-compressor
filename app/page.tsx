@@ -229,7 +229,7 @@ export default function Home() {
 
   return (
     <main>
-      <header className="header">
+      <header className="header animate-fade-up">
         <h2 style={{ margin: 0 }}>CompressPro</h2>
         <nav className="nav-links">
           <a href="#features" style={{ color: '#e6e6e6', textDecoration: 'none' }}>Features</a>
@@ -237,7 +237,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="hero">
+      <section className="hero animate-fade-up delay-1">
         <h1>Compress Images in Seconds</h1>
         <p>Optimize your workflow. Upload images, instantly reduce their size while maintaining quality, and download fast.</p>
         <a href="#compressor" className="button">
@@ -245,7 +245,7 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="tool-section" id="compressor">
+      <section className="tool-section animate-fade-up delay-2" id="compressor">
         <div className="panel">
           <div className="controls">
             <label>
@@ -372,7 +372,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="features" id="features">
+      <section className="features animate-fade-up delay-3" id="features">
         <div className="feature-card">
           <h3>⚡ Fast & Local</h3>
           <p>Processing is fast and efficient. No bloated uploads required, your privacy is guaranteed.</p>
