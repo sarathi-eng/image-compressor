@@ -295,6 +295,7 @@ export default function Home() {
               type="button"
               onClick={compressAll}
               disabled={items.length === 0 || isCompressing}
+              title={items.length === 0 ? "Add files to compress" : isCompressing ? "Compressing..." : undefined}
             >
               {isCompressing ? "Compressing..." : "Compress All"}
             </button>
@@ -303,6 +304,7 @@ export default function Home() {
               className="secondary"
               onClick={downloadZip}
               disabled={items.every((item) => !item.compressedBlob)}
+              title={items.every((item) => !item.compressedBlob) ? "Compress files to download ZIP" : undefined}
             >
               Download ZIP
             </button>
@@ -311,6 +313,7 @@ export default function Home() {
               className="secondary"
               onClick={clearAll}
               disabled={items.length === 0}
+              title={items.length === 0 ? "No files to clear" : undefined}
             >
               Clear
             </button>
@@ -349,6 +352,7 @@ export default function Home() {
                   className="secondary"
                   onClick={() => compressItem(item)}
                   disabled={item.status === "compressing"}
+                  title={item.status === "compressing" ? "Working..." : undefined}
                 >
                   {item.status === "compressing" ? "Working..." : "Compress"}
                 </button>
@@ -356,6 +360,7 @@ export default function Home() {
                   type="button"
                   onClick={() => downloadSingle(item)}
                   disabled={!item.compressedBlob}
+                  title={!item.compressedBlob ? "Compress file to download" : undefined}
                 >
                   Download
                 </button>

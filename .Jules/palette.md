@@ -1,0 +1,3 @@
+## 2024-05-23 - Explaining Disabled Button States
+**Learning:** We observed that disabled buttons ("Compress All", "Download ZIP", "Clear") lacked context. Users viewing the inactive buttons might not understand why the action isn't available (e.g. no files uploaded yet vs. actively compressing). Providing a simple `title` attribute gives tooltips that explain the reason, clarifying intent.
+**Action:** When creating action buttons that rely on specific state to be active, always add a descriptive `title` attribute or a tooltip explaining the requirement if it is currently unmet. This significantly decreases user confusion without cluttering the UI.
