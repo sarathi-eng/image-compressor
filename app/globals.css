@@ -318,3 +318,8 @@ button:disabled, .button:disabled {
   gap: 8px;
   flex-wrap: wrap;
 }
+
+button:focus-visible, .button:focus-visible, input:focus-visible {
+  outline: 2px solid #3b7df3;
+  outline-offset: 2px;
+}
