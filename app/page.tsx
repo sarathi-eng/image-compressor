@@ -320,11 +320,14 @@ export default function Home() {
         <div className="file-grid">
           {items.map((item) => (
             <div className="file-card" key={item.id}>
-              <img src={item.originalUrl} alt={item.file.name} />
+              {/* ⚡ Bolt: Added lazy loading and async decoding to prevent main thread blocking with large local blob URLs */}
+              <img src={item.originalUrl} alt={item.file.name} loading="lazy" decoding="async" />
               {item.compressedUrl ? (
                 <img
                   src={item.compressedUrl}
                   alt={`${item.file.name} compressed`}
+                  loading="lazy"
+                  decoding="async"
                 />
               ) : null}
               <div className="meta">

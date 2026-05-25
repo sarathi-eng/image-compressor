@@ -1,0 +1,3 @@
+## 2024-05-24 - Async Decoding for Local Blob URLs
+**Learning:** When rendering many high-resolution `blob:` URLs via standard `<img>` tags, synchronous decoding can block the main thread, leading to poor UI performance and jank during local file uploads.
+**Action:** Always use `loading="lazy"` and `decoding="async"` on `<img>` tags handling user-uploaded blob URLs to ensure the main thread remains responsive.
