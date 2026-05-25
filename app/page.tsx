@@ -248,10 +248,11 @@ export default function Home() {
       <section className="tool-section animate-fade-up delay-2" id="compressor">
         <div className="panel">
           <div className="controls">
-            <label>
+            <label htmlFor="quality">
               <strong>Quality:</strong> {quality}
             </label>
             <input
+              id="quality"
               type="range"
               min={10}
               max={100}
@@ -295,6 +296,7 @@ export default function Home() {
               type="button"
               onClick={compressAll}
               disabled={items.length === 0 || isCompressing}
+              title={items.length === 0 ? "Add images to compress" : isCompressing ? "Compressing images..." : "Compress all images"}
             >
               {isCompressing ? "Compressing..." : "Compress All"}
             </button>
@@ -303,6 +305,7 @@ export default function Home() {
               className="secondary"
               onClick={downloadZip}
               disabled={items.every((item) => !item.compressedBlob)}
+              title={items.every((item) => !item.compressedBlob) ? "No compressed images to download" : "Download all compressed images as ZIP"}
             >
               Download ZIP
             </button>
@@ -311,6 +314,7 @@ export default function Home() {
               className="secondary"
               onClick={clearAll}
               disabled={items.length === 0}
+              title={items.length === 0 ? "No images to clear" : "Clear all images"}
             >
               Clear
             </button>
@@ -349,6 +353,7 @@ export default function Home() {
                   className="secondary"
                   onClick={() => compressItem(item)}
                   disabled={item.status === "compressing"}
+                  title={item.status === "compressing" ? "Currently compressing" : "Compress this image"}
                 >
                   {item.status === "compressing" ? "Working..." : "Compress"}
                 </button>
@@ -356,6 +361,7 @@ export default function Home() {
                   type="button"
                   onClick={() => downloadSingle(item)}
                   disabled={!item.compressedBlob}
+                  title={!item.compressedBlob ? "Image not yet compressed" : "Download compressed image"}
                 >
                   Download
                 </button>
@@ -363,6 +369,7 @@ export default function Home() {
                   type="button"
                   className="secondary"
                   onClick={() => removeItem(item)}
+                  title="Remove this image"
                 >
                   Remove
                 </button>
