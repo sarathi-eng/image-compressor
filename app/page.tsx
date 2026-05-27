@@ -295,6 +295,7 @@ export default function Home() {
               type="button"
               onClick={compressAll}
               disabled={items.length === 0 || isCompressing}
+              title={items.length === 0 ? "Select files first" : (isCompressing ? "Compression in progress" : "")}
             >
               {isCompressing ? "Compressing..." : "Compress All"}
             </button>
@@ -303,6 +304,7 @@ export default function Home() {
               className="secondary"
               onClick={downloadZip}
               disabled={items.every((item) => !item.compressedBlob)}
+              title={items.every((item) => !item.compressedBlob) ? "No compressed files to download" : ""}
             >
               Download ZIP
             </button>
@@ -311,6 +313,7 @@ export default function Home() {
               className="secondary"
               onClick={clearAll}
               disabled={items.length === 0}
+              title={items.length === 0 ? "No files to clear" : ""}
             >
               Clear
             </button>
@@ -320,11 +323,13 @@ export default function Home() {
         <div className="file-grid">
           {items.map((item) => (
             <div className="file-card" key={item.id}>
-              <img src={item.originalUrl} alt={item.file.name} />
+              <img src={item.originalUrl} alt={item.file.name} loading="lazy" decoding="async" />
               {item.compressedUrl ? (
                 <img
                   src={item.compressedUrl}
                   alt={`${item.file.name} compressed`}
+                  loading="lazy"
+                  decoding="async"
                 />
               ) : null}
               <div className="meta">
@@ -349,6 +354,7 @@ export default function Home() {
                   className="secondary"
                   onClick={() => compressItem(item)}
                   disabled={item.status === "compressing"}
+                  title={item.status === "compressing" ? "Compression in progress" : ""}
                 >
                   {item.status === "compressing" ? "Working..." : "Compress"}
                 </button>
@@ -356,6 +362,7 @@ export default function Home() {
                   type="button"
                   onClick={() => downloadSingle(item)}
                   disabled={!item.compressedBlob}
+                  title={!item.compressedBlob ? "File not yet compressed" : ""}
                 >
                   Download
                 </button>
