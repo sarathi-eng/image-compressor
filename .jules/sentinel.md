@@ -1,0 +1,4 @@
+## 2026-05-29 - [DoS and Information Leak in API Route]
+**Vulnerability:** The `/api/compress` route buffered the uploaded file directly into memory using `file.arrayBuffer()` without enforcing a file size limit, which could lead to memory exhaustion and Denial of Service (DoS) attacks. Additionally, error messages were directly exposing `error.message` from the `sharp` library in case of a compression failure, potentially leaking internal implementation details.
+**Learning:** File uploads require strict validation constraints (like max file size) before allocating server memory. Errors generated from third-party backend processes like `sharp` must be sanitized or obscured before being sent to the client to avoid information leakage.
+**Prevention:** Implement file size limits early in the request processing lifecycle. Ensure catch blocks return generic, safe error messages to the client and rely on server-side logs for specific error details.

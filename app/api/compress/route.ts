@@ -7,6 +7,8 @@ const clampQuality = (value: number) => {
   return Math.min(100, Math.max(1, value));
 };
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
 export async function POST(req: Request) {
   const formData = await req.formData();
   const file = formData.get("file");
@@ -14,6 +16,10 @@ export async function POST(req: Request) {
 
   if (!file || !(file instanceof File)) {
     return new Response("Missing file", { status: 400 });
+  }
+
+  if (file.size > MAX_FILE_SIZE) {
+    return new Response("File size exceeds the 10MB limit", { status: 413 });
   }
 
   const quality =
@@ -48,7 +54,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Compression error:", error);
     return new Response(
-      error instanceof Error ? error.message : "Invalid image format",
+      "Invalid image format or compression failed",
       { status: 400 }
     );
   }
