@@ -1,0 +1,3 @@
+## 2024-06-25 - Context for disabled buttons
+**Learning:** Disabled UI elements without context create friction, as users don't know why they are prevented from taking action (e.g. why they can't download or compress).
+**Action:** Always provide context for disabled UI elements by adding descriptive `title` attributes or ARIA descriptions to explain why the action is currently unavailable. This provides helpful guidance instead of a dead end.
