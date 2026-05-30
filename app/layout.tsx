@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import "./globals.css";
 
 export const metadata = {
@@ -5,9 +6,6 @@ export const metadata = {
   description: "Optimize your workflow with CompressPro. Instantly reduce image sizes locally in your browser without losing quality. Perfect for SEO, web developers, and designers.",
   keywords: "image compressor, bulk image compression, local image optimization, webp, avif, png, jpeg compressor",
   metadataBase: new URL('https://compresspro.com'), // Replace with actual domain
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     title: "CompressPro | Fast & Secure Image Compressor",
     description: "Optimize your workflow with CompressPro. Instantly reduce image sizes locally in your browser without losing quality.",
@@ -19,8 +17,6 @@ export const metadata = {
   }
 };
 
-import Script from 'next/script';
-
 export default function RootLayout({
   children
 }: {
@@ -28,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
+      <body>
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-REQWWPJ94Q`}
@@ -58,8 +54,6 @@ export default function RootLayout({
             })
           }}
         />
-      </head>
-      <body>
         {children}
         <footer className="mt-12 py-8 border-t">
           <div className="container mx-auto px-4">
