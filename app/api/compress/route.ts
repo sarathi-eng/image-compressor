@@ -16,6 +16,12 @@ export async function POST(req: Request) {
     return new Response("Missing file", { status: 400 });
   }
 
+  // Prevent Denial of Service (DoS) by enforcing a strict 10MB file size limit
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+  if (file.size > MAX_FILE_SIZE) {
+    return new Response("File too large", { status: 413 });
+  }
+
   const quality =
     typeof qualityValue === "string"
       ? clampQuality(Number.parseInt(qualityValue, 10))
@@ -47,9 +53,7 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("Compression error:", error);
-    return new Response(
-      error instanceof Error ? error.message : "Invalid image format",
-      { status: 400 }
-    );
+    // Return generic error message to prevent leaking internal implementation details
+    return new Response("Image processing failed", { status: 400 });
   }
 }
