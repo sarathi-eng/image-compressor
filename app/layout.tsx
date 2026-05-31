@@ -45,6 +45,16 @@ export default function RootLayout({
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2KVWPQF2RL"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-2KVWPQF2RL');
+          `
+        }} />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6349736452407764" crossOrigin="anonymous"></script>
       </head>
       <body>{children}</body>
