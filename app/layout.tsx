@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import { Metadata } from 'next';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://compresspro.app'),
@@ -43,10 +44,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2KVWPQF2RL"></script>
-        <script dangerouslySetInnerHTML={{
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} suppressHydrationWarning />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} suppressHydrationWarning />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6349736452407764" crossOrigin="anonymous"></script>
+      </head>
+      <body>
+        {children}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-2KVWPQF2RL" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive" dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -55,9 +60,7 @@ export default function RootLayout({
             gtag('config', 'G-2KVWPQF2RL');
           `
         }} />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6349736452407764" crossOrigin="anonymous"></script>
-      </head>
-      <body>{children}</body>
+      </body>
     </html>
   );
 }
