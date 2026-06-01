@@ -304,10 +304,11 @@ export default function Home() {
       <section className="tool-section animate-fade-up delay-2" id="compressor">
         <div className="panel">
           <div className="controls">
-            <label>
+            <label htmlFor="quality-slider">
               <strong>Quality:</strong> {quality}
             </label>
             <input
+              id="quality-slider"
               type="range"
               min={10}
               max={100}
