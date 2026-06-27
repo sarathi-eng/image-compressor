@@ -3,14 +3,14 @@ import "./globals.css";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://compresspro.app'),
+  metadataBase: new URL('https://compresspro.alfo.online'),
   title: "CompressPro | Fast & Secure Image Compressor",
   description: "Optimize your workflow with CompressPro. Instantly reduce image sizes locally in your browser without losing quality. Perfect for SEO, web developers, and designers.",
   keywords: "image compressor, bulk image compression, local image optimization, webp, avif, png, jpeg compressor",
   openGraph: {
     title: "CompressPro | Fast & Secure Image Compressor",
     description: "Optimize your workflow with CompressPro. Instantly reduce image sizes locally in your browser without losing quality.",
-    url: 'https://compresspro.app',
+    url: 'https://compresspro.alfo.online',
     siteName: 'CompressPro',
     type: "website",
     locale: "en_US"
@@ -29,15 +29,15 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "CompressPro",
-    "url": "https://compresspro.app",
-    "logo": "https://compresspro.app/logo.png"
+    "url": "https://compresspro.alfo.online",
+    "logo": "https://compresspro.alfo.online/logo.png"
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "CompressPro",
-    "url": "https://compresspro.app"
+    "url": "https://compresspro.alfo.online"
   };
 
   return (
