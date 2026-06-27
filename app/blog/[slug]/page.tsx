@@ -27,8 +27,27 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
+  const faqSchema = post.faqs ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": post.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+
   return (
     <main>
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <Header />
       <article style={{ padding: '4rem 2rem', maxWidth: '800px', margin: '0 auto' }}>
         <Link href="/blog" style={{ color: '#0070f3', textDecoration: 'none', display: 'block', marginBottom: '2rem' }}>
@@ -45,6 +64,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           style={{ lineHeight: '1.8', fontSize: '1.1rem', color: '#ccc' }}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+
+        {post.faqs && post.faqs.length > 0 && (
+          <section style={{ marginTop: '4rem', padding: '2rem', background: '#0a0a0a', borderRadius: '12px', border: '1px solid #222' }}>
+            <h2 style={{ fontSize: '2rem', marginBottom: '2rem' }}>Frequently Asked Questions</h2>
+            {post.faqs.map((faq, index) => (
+              <div key={index} style={{ marginBottom: '2rem' }}>
+                <h3 style={{ fontSize: '1.3rem', color: '#0070f3', marginBottom: '0.5rem' }}>{faq.question}</h3>
+                <p style={{ color: '#aaa', lineHeight: '1.6' }}>{faq.answer}</p>
+              </div>
+            ))}
+          </section>
+        )}
 
         <section style={{ marginTop: '4rem', padding: '2rem', background: '#111', borderRadius: '12px', border: '1px solid #333' }}>
           <h3>Need to compress images?</h3>
