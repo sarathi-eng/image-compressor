@@ -14,6 +14,8 @@ export default function Footer() {
         <Link href="/compress-png" style={{ color: '#666', textDecoration: 'none' }}>Compress PNG</Link>
         <Link href="/compress-jpeg" style={{ color: '#666', textDecoration: 'none' }}>Compress JPEG</Link>
         <Link href="/compress-webp" style={{ color: '#666', textDecoration: 'none' }}>Compress WebP</Link>
+        <Link href="/compress-avif" style={{ color: '#666', textDecoration: 'none' }}>Compress AVIF</Link>
+        <Link href="/compress-pdf" style={{ color: '#666', textDecoration: 'none' }}>Compress PDF</Link>
       </div>
       <p style={{ color: '#666', margin: 0 }}>© {new Date().getFullYear()} CompressPro. All rights reserved.</p>
     </footer>

@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/compress-png',
     '/compress-jpeg',
     '/compress-webp',
+    '/compress-avif',
+    '/compress-pdf',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
