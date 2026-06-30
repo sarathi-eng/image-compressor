@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://compresspro.alfo.online/sitemap.xml
