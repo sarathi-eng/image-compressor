@@ -10,6 +10,7 @@ export default function Header() {
         <Link href="/#features" style={{ color: '#e6e6e6', textDecoration: 'none' }}>Features</Link>
         <Link href="/#compressor" style={{ color: '#e6e6e6', textDecoration: 'none' }}>Tool</Link>
         <Link href="/blog" style={{ color: '#e6e6e6', textDecoration: 'none' }}>Blog</Link>
+        <Link href="/faq" style={{ color: '#e6e6e6', textDecoration: 'none' }}>FAQ</Link>
       </nav>
     </header>
   );
