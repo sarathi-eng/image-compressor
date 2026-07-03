@@ -4,3 +4,7 @@ out/
 coverage/
 .env*
 .DS_Store
+*.log
+test-results/
+playwright-report/
+verification/
