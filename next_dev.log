@@ -1,0 +1,67 @@
+
+> image-compressor@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1749ms
+ ○ Compiling / ...
+ ✓ Compiled / in 6.4s (584 modules)
+ GET / 200 in 7018ms
+ ○ Compiling /faq ...
+ ✓ Compiled /faq in 3.2s (574 modules)
+ GET /faq 200 in 3341ms
+ ✓ Compiled /pricing in 216ms (576 modules)
+ GET /pricing 200 in 306ms
+ ✓ Compiled /blog/[slug] in 266ms (584 modules)
+ GET /blog/ultimate-guide-to-file-compression-2026 200 in 1067ms
+ ✓ Compiled in 108ms
+ ○ Compiling /blog ...
+ ✓ Compiled /blog in 1229ms (495 modules)
+ GET /blog 200 in 1512ms
+ ✓ Compiled in 79ms (246 modules)
+ ✓ Compiled / in 120ms (326 modules)
+TypeError: __webpack_modules__[moduleId] is not a function
+    at Object.__webpack_require__ [as require] (/app/.next/server/webpack-runtime.js:33:42)
+    at require (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:40:20064)
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:108376
+    at ea (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:108583)
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:110813
+    at Object._fromJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:111370)
+    at JSON.parse (<anonymous>)
+    at ec (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:109078)
+    at eo (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:108123)
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115291
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115308
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115341
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115358
+    at t (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115581)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at Object.__webpack_require__ [as require] (/app/.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>)
+digest: "731109140"
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at Object.__webpack_require__ [as require] (/app/.next/server/webpack-runtime.js:33:42)
+    at require (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:40:20064)
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:108376
+    at ea (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:108583)
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:110813
+    at Object._fromJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:111370)
+    at JSON.parse (<anonymous>)
+    at ec (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:109078)
+    at eo (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:108123)
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115291
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115308
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115341
+    at /app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115358
+    at t (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:115581) {
+  page: '/'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2s (798 modules)
+ GET / 500 in 2522ms
+ ✓ Compiled /faq in 213ms (366 modules)
+ GET /faq 200 in 226ms
+[?25h
