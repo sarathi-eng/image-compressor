@@ -27,8 +27,36 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.description,
+    "datePublished": post.date,
+    "author": {
+      "@type": "Organization",
+      "name": "CompressPro"
+    }
+  };
+
+  const faqSchema = post.faqs ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": post.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+
       <Header />
       <article style={{ padding: '4rem 2rem', maxWidth: '800px', margin: '0 auto' }}>
         <Link href="/blog" style={{ color: '#0070f3', textDecoration: 'none', display: 'block', marginBottom: '2rem' }}>
@@ -40,11 +68,36 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <div style={{ color: '#666' }}>Published on {post.date}</div>
         </header>
 
+        {post.aeoAnswer && (
+          <section style={{
+            background: '#1a1a1a',
+            padding: '2rem',
+            borderRadius: '12px',
+            borderLeft: '4px solid #0070f3',
+            marginBottom: '3rem'
+          }}>
+            <h2 style={{ fontSize: '1.2rem', marginTop: 0, color: '#0070f3' }}>Quick Answer</h2>
+            <p style={{ fontSize: '1.2rem', lineHeight: '1.6', margin: 0, color: '#fff' }}>{post.aeoAnswer}</p>
+          </section>
+        )}
+
         <div
           className="blog-content"
           style={{ lineHeight: '1.8', fontSize: '1.1rem', color: '#ccc' }}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+
+        {post.faqs && (
+          <section style={{ marginTop: '4rem' }}>
+            <h2 style={{ fontSize: '2rem', marginBottom: '2rem' }}>Frequently Asked Questions</h2>
+            {post.faqs.map((faq, index) => (
+              <div key={index} style={{ marginBottom: '2rem' }}>
+                <h3 style={{ fontSize: '1.3rem', color: '#fff', marginBottom: '0.5rem' }}>{faq.question}</h3>
+                <p style={{ lineHeight: '1.6' }}>{faq.answer}</p>
+              </div>
+            ))}
+          </section>
+        )}
 
         <section style={{ marginTop: '4rem', padding: '2rem', background: '#111', borderRadius: '12px', border: '1px solid #333' }}>
           <h3>Need to compress images?</h3>

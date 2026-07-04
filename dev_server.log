@@ -1,0 +1,25 @@
+
+> image-compressor@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1772ms
+ ○ Compiling /blog ...
+ ✓ Compiled /blog in 5.2s (500 modules)
+ GET /blog 200 in 5649ms
+ ○ Compiling /blog/[slug] ...
+ ✓ Compiled /blog/[slug] in 4.3s (493 modules)
+ GET /blog/importance-of-image-compression-for-seo 200 in 5453ms
+ GET /blog/ultimate-guide-to-file-compression-2026 200 in 45ms
+ ✓ Compiled /faq in 199ms (495 modules)
+ GET /faq 200 in 314ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1102ms (582 modules)
+ GET / 200 in 1423ms
+ GET / 200 in 38ms
+ ✓ Compiled /pricing in 215ms (576 modules)
+ ✓ Compiled /blog in 357ms (330 modules)
+ ✓ Compiled /blog/[slug] in 132ms (337 modules)
