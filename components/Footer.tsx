@@ -6,6 +6,9 @@ export default function Footer() {
       <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
         <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
         <Link href="/contact" style={{ color: '#888', textDecoration: 'none' }}>Contact</Link>
+        <Link href="/pricing" style={{ color: '#888', textDecoration: 'none' }}>Pricing</Link>
+        <Link href="/faq" style={{ color: '#888', textDecoration: 'none' }}>FAQ</Link>
+        <Link href="/security" style={{ color: '#888', textDecoration: 'none' }}>Security</Link>
         <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
         <Link href="/privacy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
         <Link href="/terms" style={{ color: '#888', textDecoration: 'none' }}>Terms of Service</Link>
