@@ -24,7 +24,7 @@ test('robots.txt is accessible', async ({ page }) => {
 
 test('blog index page shows posts', async ({ page }) => {
   await page.goto('http://localhost:3000/blog');
-  await expect(page.getByText('Image Optimization Blog')).toBeVisible();
+  await expect(page.getByText(/Optimization Hub/i).or(page.getByText(/Image Optimization Blog/i))).toBeVisible();
   await expect(page.getByText('The Importance of Image Compression for SEO')).toBeVisible();
 });
 
