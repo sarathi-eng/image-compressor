@@ -7,6 +7,9 @@ export default function Footer() {
         <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
         <Link href="/contact" style={{ color: '#888', textDecoration: 'none' }}>Contact</Link>
         <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
+        <Link href="/faq" style={{ color: '#888', textDecoration: 'none' }}>FAQ</Link>
+        <Link href="/pricing" style={{ color: '#888', textDecoration: 'none' }}>Pricing</Link>
+        <Link href="/security" style={{ color: '#888', textDecoration: 'none' }}>Security</Link>
         <Link href="/privacy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
         <Link href="/terms" style={{ color: '#888', textDecoration: 'none' }}>Terms of Service</Link>
       </div>
