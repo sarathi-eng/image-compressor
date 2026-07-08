@@ -16,6 +16,17 @@ export async function POST(req: Request) {
     return new Response("Missing file", { status: 400 });
   }
 
+  // Security: Prevent DoS by limiting file size (10MB max)
+  const MAX_FILE_SIZE = 10 * 1024 * 1024;
+  if (file.size > MAX_FILE_SIZE) {
+    return new Response("File too large. Maximum size is 10MB.", { status: 413 });
+  }
+
+  // Security: Ensure only image files are processed to prevent parsing errors/exploits
+  if (!file.type.startsWith("image/")) {
+    return new Response("Invalid file type. Only images are allowed.", { status: 415 });
+  }
+
   const quality =
     typeof qualityValue === "string"
       ? clampQuality(Number.parseInt(qualityValue, 10))
@@ -46,9 +57,10 @@ export async function POST(req: Request) {
       }
     });
   } catch (error) {
+    // Security: Log internally, but return generic error to prevent leaking system/library info
     console.error("Compression error:", error);
     return new Response(
-      error instanceof Error ? error.message : "Invalid image format",
+      "Image processing failed.",
       { status: 400 }
     );
   }
