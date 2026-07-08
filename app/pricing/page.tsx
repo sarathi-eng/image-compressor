@@ -8,8 +8,22 @@ export const metadata = {
 };
 
 export default function PricingPage() {
+  const pricingSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "CompressPro",
+    "description": "Professional-grade image, video, and audio compression tool available for free.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingSchema) }} />
       <Header />
       <section style={{ padding: '4rem 2rem', maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
         <h1 style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>Simple Pricing</h1>
