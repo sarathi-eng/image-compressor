@@ -1,0 +1,4 @@
+## 2024-05-26 - Prevent DoS and Information Leakage in API Routes
+**Vulnerability:** The `/api/compress` route lacked file size validation before buffering the upload into memory with `arrayBuffer()`, creating a potential Denial of Service (DoS) vulnerability. Additionally, the route's error handling exposed `error.message` directly in the response, which could leak internal implementation details from the `sharp` library.
+**Learning:** In Next.js App Router API endpoints that handle file processing, reading an entire file into memory without bounds checking can easily crash the server if a malicious user uploads extremely large files. Error responses should also be generic to avoid leaking backend stack specifics.
+**Prevention:** Enforce strict file size limits (e.g., `< 10MB`) before attempting to process or buffer inputs. Catch all errors and return generic, safe messages (e.g., "Image compression failed") to the client.
