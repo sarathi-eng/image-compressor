@@ -2,6 +2,8 @@ import sharp from "sharp";
 
 export const runtime = "nodejs";
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
 const clampQuality = (value: number) => {
   if (Number.isNaN(value)) return 80;
   return Math.min(100, Math.max(1, value));
@@ -14,6 +16,11 @@ export async function POST(req: Request) {
 
   if (!file || !(file instanceof File)) {
     return new Response("Missing file", { status: 400 });
+  }
+
+  // Security: Prevent DoS by enforcing file size limit before buffering into memory
+  if (file.size > MAX_FILE_SIZE) {
+    return new Response("File size exceeds 10MB limit", { status: 413 });
   }
 
   const quality =
@@ -47,9 +54,7 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("Compression error:", error);
-    return new Response(
-      error instanceof Error ? error.message : "Invalid image format",
-      { status: 400 }
-    );
+    // Security: Avoid leaking internal error details
+    return new Response("An error occurred during image processing", { status: 500 });
   }
 }

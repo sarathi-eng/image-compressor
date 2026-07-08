@@ -1,0 +1,4 @@
+## 2024-05-24 - [DoS via Memory Exhaustion in File Upload]
+**Vulnerability:** The `/api/compress` endpoint loaded the entire uploaded file into memory using `file.arrayBuffer()` before checking the file size. This could allow an attacker to send an extremely large file, exhausting server memory and causing a Denial of Service (DoS) attack.
+**Learning:** In Next.js App Router API routes, the raw request body or `FormData` elements like `File` can be read into memory directly. If the size is unbounded, it's trivial to crash the Node process. Also, error messages from the `sharp` image processing library were being returned directly to the user.
+**Prevention:** Always enforce strict file size limits (e.g., using `file.size`) *before* reading the content into memory. Additionally, catch blocks handling sensitive operations like image processing should return generic error messages to avoid leaking internal implementation details or stack traces to potential attackers.
