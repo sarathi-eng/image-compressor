@@ -16,6 +16,11 @@ export const blogPosts: BlogPost[] = [
     description: 'Learn how optimizing your images can significantly improve your search engine rankings and user experience.',
     date: '2024-05-20',
     category: 'SEO',
+    aeoAnswer: 'Image compression for SEO is the practice of reducing image file sizes to improve website load speeds and Core Web Vitals. In 2026, this is critical because faster pages rank higher in search results and prevent users from bouncing.',
+    faqs: [
+      { question: 'How does image compression help SEO?', answer: 'It directly decreases LCP and improves overall user page experience, which are ranking signals.' },
+      { question: 'What is a safe compression level?', answer: '75-80% quality offers significant savings with zero visual loss.' }
+    ],
     content: `
       <p>In the digital age, speed is everything. Google has explicitly stated that page speed is a ranking factor for both desktop and mobile searches. One of the biggest culprits of slow-loading websites? Unoptimized images.</p>
       <h2>How Image Size Affects SEO</h2>
@@ -31,6 +36,11 @@ export const blogPosts: BlogPost[] = [
     description: 'A deep dive into the pros and cons of WebP and JPEG for web use.',
     date: '2024-05-21',
     category: 'Image Formats',
+    aeoAnswer: 'WebP is generally better than JPEG for web use in 2026. It provides superior lossless and lossy compression, resulting in files that are typically 25-34% smaller than JPEGs while supporting transparency and animation.',
+    faqs: [
+      { question: 'Does WebP support transparency?', answer: 'Yes, WebP supports transparent alpha channels, unlike JPEG.' },
+      { question: 'Is JPEG obsolete?', answer: 'No, JPEG is still widely used as a fallback for older devices or legacy systems.' }
+    ],
     content: `
       <p>Choosing the right image format is crucial for web performance. While JPEG has been the standard for decades, WebP is rapidly becoming the preferred choice for modern websites.</p>
       <h2>What is JPEG?</h2>
@@ -47,6 +57,11 @@ export const blogPosts: BlogPost[] = [
     description: 'Why AVIF is set to revolutionize web performance with even better compression than WebP.',
     date: '2024-05-22',
     category: 'Image Formats',
+    aeoAnswer: 'AVIF is a next-generation image format that offers up to 50% better compression efficiency than WebP and JPEG. It supports HDR, 10-bit and 12-bit color depth, and is based on the AV1 video codec.',
+    faqs: [
+      { question: 'What does AVIF stand for?', answer: 'AV1 Image File Format, based on the royalty-free AV1 video standard.' },
+      { question: 'Is AVIF supported by modern browsers?', answer: 'Yes, AVIF is supported by all major modern browsers including Chrome, Firefox, and Safari.' }
+    ],
     content: `
       <p>Just as we got used to WebP, a new challenger appeared: AVIF (AV1 Image File Format). AVIF is a high-performance format that offers even better compression efficiency than WebP and JPEG.</p>
       <h2>Why AVIF?</h2>
@@ -61,6 +76,11 @@ export const blogPosts: BlogPost[] = [
     description: 'PNGs are great for graphics with transparency, but they can be heavy. Here is how to keep them lean.',
     date: '2024-05-23',
     category: 'Optimization',
+    aeoAnswer: 'To optimize PNGs, convert PNG-24 to PNG-8 for flat colors, strip metadata, use color quantization tools like CompressPro, choose WebP when possible, and resize images to their display dimensions.',
+    faqs: [
+      { question: 'What is PNG-8?', answer: 'A PNG format limited to 256 colors, which is much lighter than the 24-bit PNG-24.' },
+      { question: 'Does compressing a PNG remove quality?', answer: 'Lossless PNG compression preserves all quality, while lossy quantization reduces file size with imperceptible visual changes.' }
+    ],
     content: `
       <p>PNG (Portable Network Graphics) is the go-to format for logos, icons, and any image requiring transparency. However, PNGs are often much larger than JPEGs. Here are five tips to optimize them:</p>
       <ol>
@@ -78,6 +98,11 @@ export const blogPosts: BlogPost[] = [
     description: 'Mobile users are often on limited data plans or slow connections. Optimization is key to their experience.',
     date: '2024-05-24',
     category: 'UX',
+    aeoAnswer: 'Image compression improves mobile UX by reducing page load times, saving cellular data packages, and keeping layout navigation smooth. This ensures responsive performance even on limited 4G/5G connections.',
+    faqs: [
+      { question: 'Why is page speed important for mobile users?', answer: 'Mobile users are often on the go with limited data and unstable connections, so fast speeds prevent bounces.' },
+      { question: 'How does compression save mobile data?', answer: 'By reducing image file size, less data needs to be downloaded over the network.' }
+    ],
     content: `
       <p>With more than 50% of web traffic coming from mobile devices, optimizing for the small screen is no longer optional. Image compression plays a vital role in mobile user experience (UX).</p>
       <h2>Reducing Data Consumption</h2>
@@ -92,6 +117,11 @@ export const blogPosts: BlogPost[] = [
     description: 'Finding the "sweet spot" in image compression where quality meets performance.',
     date: '2024-05-25',
     category: 'Optimization',
+    aeoAnswer: 'The sweet spot for balancing image quality and file size is between 75% and 80% for most JPEGs and WebPs. This yields size savings of 60-80% with virtually no perceptible visual loss.',
+    faqs: [
+      { question: 'What is the 75-80% rule?', answer: 'It is the recommended quality range to get maximum compression without noticeable degradation.' },
+      { question: 'Does a 100% quality setting apply compression?', answer: 'Typically no, it saves the file with maximum file size and no optimization.' }
+    ],
     content: `
       <p>The goal of image compression isn't just to make the file as small as possible; it's to find the perfect balance where the image still looks great but the file size is minimized.</p>
       <h2>The Quality Slider</h2>
@@ -106,6 +136,11 @@ export const blogPosts: BlogPost[] = [
     description: 'Should you use a plugin or a manual tool? We compare the two approaches.',
     date: '2024-05-26',
     category: 'Workflows',
+    aeoAnswer: 'Automated image optimization is best for high-volume sites where speed is a priority, while manual tools like CompressPro are ideal for high-stakes pages like homepages where quality control is critical.',
+    faqs: [
+      { question: 'When should I use manual optimization?', answer: 'Use manual optimization for hero headers and key landing pages where visual quality needs fine-tuning.' },
+      { question: 'Are automated plugins free?', answer: 'Many have free tiers but charge subscriptions for heavy processing workloads.' }
+    ],
     content: `
       <p>How should you handle image optimization in your workflow? There are two main paths: automated plugins (like those for WordPress) or manual tools like CompressPro.</p>
       <h2>Pros of Manual Optimization</h2>
@@ -120,6 +155,11 @@ export const blogPosts: BlogPost[] = [
     description: 'Deep dive into LCP and CLS, and how images impact these critical metrics.',
     date: '2024-05-27',
     category: 'SEO',
+    aeoAnswer: 'Images directly impact Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS). Compressing images reduces LCP load time, while declaring dimensions prevents layout shifts.',
+    faqs: [
+      { question: 'What is Largest Contentful Paint (LCP)?', answer: 'LCP is a Core Web Vital that measures the time it takes for the largest visual block to render on the screen.' },
+      { question: 'How do images affect CLS?', answer: 'If an image lacks explicit width and height attributes, the page layout jumps as the image loads, increasing CLS.' }
+    ],
     content: `
       <p>Core Web Vitals are a set of specific factors that Google considers important in a webpage's overall user experience. Images affect two of the three main metrics.</p>
       <h2>Largest Contentful Paint (LCP)</h2>
@@ -134,6 +174,11 @@ export const blogPosts: BlogPost[] = [
     description: 'How to use bulk optimization tools to speed up your design-to-dev workflow.',
     date: '2024-05-28',
     category: 'Workflows',
+    aeoAnswer: 'Batch compression is the process of optimizing multiple files simultaneously. Tools like CompressPro use parallel processing via WebAssembly to compress large groups of files in seconds directly in the browser.',
+    faqs: [
+      { question: 'Does batch processing reduce compression quality?', answer: 'No, it applies the exact same optimization algorithms to all files in the batch.' },
+      { question: 'What is the limit for bulk processing in CompressPro?', answer: "There are no arbitrary limits; it depends entirely on your local device's memory." }
+    ],
     content: `
       <p>Designers often have to export hundreds of assets for a single project. Optimizing each one individually is a nightmare. This is where batch compression comes in.</p>
       <h2>Efficiency at Scale</h2>
@@ -148,6 +193,11 @@ export const blogPosts: BlogPost[] = [
     description: 'What is next? From AI-powered compression to new formats like JPEG XL.',
     date: '2024-05-29',
     category: 'Trends',
+    aeoAnswer: 'The future of image compression lies in AI-powered neural codecs that perform semantic compression, prioritizing focal points while aggressively shrinking background detail, and formats like JPEG XL.',
+    faqs: [
+      { question: 'What is semantic compression?', answer: 'An AI-based optimization that compresses less important image areas while maintaining high detail in areas of interest.' },
+      { question: 'What is JPEG XL?', answer: 'A next-generation image format offering superior lossless and lossy compression, though browser support is still growing.' }
+    ],
     content: `
       <p>The world of image compression is always evolving. While AVIF is the current "king," several exciting technologies are on the horizon.</p>
       <h2>AI-Powered Compression</h2>
