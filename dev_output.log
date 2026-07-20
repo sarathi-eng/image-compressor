@@ -1,0 +1,12 @@
+
+> image-compressor@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1807ms
+ ○ Compiling /blog/[slug] ...
+ ✓ Compiled /blog/[slug] in 2.6s (491 modules)
+ GET /blog/ultimate-guide-to-modern-image-codecs 200 in 3922ms
