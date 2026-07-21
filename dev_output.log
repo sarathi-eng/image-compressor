@@ -6,7 +6,114 @@
   - Local:        http://localhost:3000
 
  ✓ Starting...
- ✓ Ready in 1807ms
- ○ Compiling /blog/[slug] ...
- ✓ Compiled /blog/[slug] in 2.6s (491 modules)
- GET /blog/ultimate-guide-to-modern-image-codecs 200 in 3922ms
+ ✓ Ready in 1961ms
+ ○ Compiling /faq ...
+ ✓ Compiled /faq in 4.5s (574 modules)
+ GET /faq 200 in 4914ms
+ GET / 200 in 4991ms
+ ○ Compiling /sitemap.xml ...
+ ✓ Compiled /sitemap.xml in 716ms (612 modules)
+ GET /pricing 200 in 996ms
+ GET /sitemap.xml 200 in 1276ms
+ ○ Compiling /security ...
+ ✓ Compiled /security in 592ms (617 modules)
+ GET /security 200 in 511ms
+ GET /blog 200 in 840ms
+ ✓ Compiled /blog/[slug] in 323ms (624 modules)
+ GET /blog/compresspro-vs-tinypng 200 in 1042ms
+ GET /blog/importance-of-image-compression-for-seo 200 in 716ms
+ ✓ Compiled /compress-png in 438ms (626 modules)
+ GET /compress-png 200 in 697ms
+ GET /blog/how-to-compress-jpg-micro 200 in 520ms
+ GET /blog/ultimate-guide-to-modern-image-codecs 200 in 128ms
+ ⨯ Failed to generate static paths for /blog/[slug]:
+SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at loadManifest (/app/node_modules/next/dist/server/load-manifest.js:36:25)
+    at getMaybePagePath (/app/node_modules/next/dist/server/require.js:57:59)
+    at getPagePath (/app/node_modules/next/dist/server/require.js:92:22)
+    at requirePage (/app/node_modules/next/dist/server/require.js:99:22)
+    at /app/node_modules/next/dist/server/load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async loadComponentsImpl (/app/node_modules/next/dist/server/load-components.js:103:26)
+    at async Object.loadStaticPaths (/app/node_modules/next/dist/server/dev/static-paths-worker.js:23:24) {
+  type: 'SyntaxError'
+}
+ ○ Compiling /compress-jpeg ...
+ ✓ Compiled /compress-jpeg in 568ms (628 modules)
+ GET /compress-jpeg 200 in 688ms
+ ✓ Compiled /compress-webp in 325ms (630 modules)
+ GET /blog/webp-vs-avif-2026-comparison 200 in 605ms
+ GET /compress-webp 200 in 438ms
+ GET /blog/jpeg-xl-future-web-images 200 in 61ms
+ GET /blog/avif-vs-jpeg-web-performance-2026 200 in 59ms
+ GET /blog/responsive-image-setups-web-performance 200 in 66ms
+ GET /blog/svg-compression-complete-guide-2026 200 in 66ms
+ GET /blog/what-is-jpeg-xl-micro 200 in 53ms
+ GET / 200 in 97ms
+ GET /faq 200 in 133ms
+ GET /sitemap.xml 200 in 90ms
+ GET /pricing 200 in 118ms
+ GET /blog 200 in 215ms
+ GET /security 200 in 60ms
+ GET /blog/importance-of-image-compression-for-seo 200 in 78ms
+ GET /blog/compresspro-vs-tinypng 200 in 68ms
+ GET /compress-png 200 in 52ms
+ GET /blog/how-to-compress-jpg-micro 200 in 128ms
+ GET /compress-jpeg 200 in 77ms
+ GET /blog/ultimate-guide-to-modern-image-codecs 200 in 90ms
+ GET /compress-webp 200 in 146ms
+ GET /blog/webp-vs-avif-2026-comparison 200 in 66ms
+ GET /blog/jpeg-xl-future-web-images 200 in 65ms
+ GET /blog/avif-vs-jpeg-web-performance-2026 200 in 65ms
+ GET /blog/responsive-image-setups-web-performance 200 in 45ms
+ GET /blog/svg-compression-complete-guide-2026 200 in 56ms
+ GET /blog/what-is-jpeg-xl-micro 200 in 54ms
+ GET /blog/video-compression-standards-for-businesses-2026 200 in 73ms
+ GET /blog/how-file-compression-drives-ecommerce-conversions-2026 200 in 72ms
+ GET /blog/reducing-cloud-storage-costs-with-enterprise-optimization 404 in 60ms
+ GET /blog/compresspro-vs-adobe-compressor-2026 200 in 65ms
+ GET /blog/compresspro-vs-zamzar-2026 200 in 62ms
+ GET /blog/file-compression-for-social-media-managers-2026 200 in 54ms
+ GET /blog/file-compression-for-podcasters-2026 200 in 45ms
+ GET /blog/mov-video-compression-complete-guide-2026 200 in 45ms
+ GET /blog/wav-audio-compression-complete-guide-2026 200 in 57ms
+ GET /blog/what-is-video-codec-micro 200 in 54ms
+ GET /blog/what-is-variable-bitrate-vbr-micro 200 in 62ms
+ GET /blog/what-is-constant-bitrate-cbr-micro 200 in 58ms
+ GET /blog/what-is-video-transcode-micro 200 in 63ms
+ GET /blog/what-is-visual-lossless-micro 200 in 63ms
+ GET /faq 200 in 59ms
+ GET / 200 in 276ms
+ GET /pricing 200 in 56ms
+ GET /sitemap.xml 200 in 39ms
+ GET /blog 200 in 151ms
+ GET /security 200 in 39ms
+ GET /blog/importance-of-image-compression-for-seo 200 in 51ms
+ GET /blog/compresspro-vs-tinypng 200 in 83ms
+ GET /compress-png 200 in 56ms
+ GET /blog/how-to-compress-jpg-micro 200 in 54ms
+ GET /compress-jpeg 200 in 55ms
+ GET /blog/ultimate-guide-to-modern-image-codecs 200 in 72ms
+ GET /compress-webp 200 in 145ms
+ GET /blog/webp-vs-avif-2026-comparison 200 in 59ms
+ GET /blog/jpeg-xl-future-web-images 200 in 41ms
+ GET /blog/avif-vs-jpeg-web-performance-2026 200 in 46ms
+ GET /blog/responsive-image-setups-web-performance 200 in 78ms
+ GET /blog/svg-compression-complete-guide-2026 200 in 51ms
+ GET /blog/what-is-jpeg-xl-micro 200 in 47ms
+ GET /blog/video-compression-standards-for-businesses-2026 200 in 68ms
+ GET /blog/how-file-compression-drives-ecommerce-conversions-2026 200 in 56ms
+ GET /blog/reducing-cloud-storage-costs-with-enterprise-file-optimization 200 in 54ms
+ GET /blog/compresspro-vs-adobe-compressor-2026 200 in 49ms
+ GET /blog/compresspro-vs-zamzar-2026 200 in 92ms
+ GET /blog/file-compression-for-social-media-managers-2026 200 in 86ms
+ GET /blog/file-compression-for-podcasters-2026 200 in 67ms
+ GET /blog/mov-video-compression-complete-guide-2026 200 in 47ms
+ GET /blog/wav-audio-compression-complete-guide-2026 200 in 65ms
+ GET /blog/what-is-video-codec-micro 200 in 46ms
+ GET /blog/what-is-variable-bitrate-vbr-micro 200 in 67ms
+ GET /blog/what-is-constant-bitrate-cbr-micro 200 in 78ms
+ GET /blog/what-is-video-transcode-micro 200 in 59ms
+ GET /blog/what-is-visual-lossless-micro 200 in 69ms
+[?25h
