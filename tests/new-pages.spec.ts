@@ -81,3 +81,79 @@ test.describe('Week 2 Monday New Content Pages', () => {
     await expect(page.locator('h2').filter({ hasText: 'How Does JPEG XL Work?' })).toBeVisible();
   });
 });
+
+test.describe('Week 2 Tuesday New Content Pages', () => {
+  test('Corporate Video Standards guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/video-compression-standards-for-businesses-2026`);
+    await expect(page.locator('h1')).toContainText('Video Compression Standards for Businesses in 2026');
+    await expect(page.locator('h2').filter({ hasText: 'Why Video Compression Standards Matter' })).toBeVisible();
+  });
+
+  test('E-commerce conversion guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/how-file-compression-drives-ecommerce-conversions-2026`);
+    await expect(page.locator('h1')).toContainText('How File Compression Drives E-commerce Conversion Rates');
+    await expect(page.locator('h2').filter({ hasText: 'Why File Compression Matters for E-commerce Sites' })).toBeVisible();
+  });
+
+  test('Cloud costs reduction guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/reducing-cloud-storage-costs-with-enterprise-file-optimization`);
+    await expect(page.locator('h1')).toContainText('Reducing Cloud Storage Costs with Enterprise File Optimization');
+    await expect(page.locator('h2').filter({ hasText: 'Why Reducing Cloud Storage Costs Matters' })).toBeVisible();
+  });
+
+  test('Adobe Compressor comparison page is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/compresspro-vs-adobe-compressor-2026`);
+    await expect(page.locator('h1')).toContainText('CompressPro vs. Adobe Compressor');
+    await expect(page.locator('h2').filter({ hasText: 'Deep Dive: CompressPro' })).toBeVisible();
+    await expect(page.locator('table')).toBeVisible();
+  });
+
+  test('Zamzar comparison page is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/compresspro-vs-zamzar-2026`);
+    await expect(page.locator('h1')).toContainText('CompressPro vs. Zamzar');
+    await expect(page.locator('h2').filter({ hasText: 'Deep Dive: Zamzar' })).toBeVisible();
+    await expect(page.locator('table')).toBeVisible();
+  });
+
+  test('Social media manager use case is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/file-compression-for-social-media-managers-2026`);
+    await expect(page.locator('h1')).toContainText('File Compression for Social Media Managers');
+    await expect(page.locator('h2').filter({ hasText: 'Top File Types to Compress for Social Media' })).toBeVisible();
+  });
+
+  test('Podcasters use case is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/file-compression-for-podcasters-2026`);
+    await expect(page.locator('h1')).toContainText('File Compression for Podcasters');
+    await expect(page.locator('h2').filter({ hasText: 'Top File Types to Compress for Podcasting' })).toBeVisible();
+  });
+
+  test('MOV deep dive guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/mov-video-compression-complete-guide-2026`);
+    await expect(page.locator('h1')).toContainText('The Complete Guide to MOV Video Compression');
+    await expect(page.locator('h2').filter({ hasText: 'How to Compress MOV Files Effectively' })).toBeVisible();
+  });
+
+  test('WAV deep dive guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/wav-audio-compression-complete-guide-2026`);
+    await expect(page.locator('h1')).toContainText('The Complete Guide to WAV Audio Compression');
+    await expect(page.locator('h2').filter({ hasText: 'How to Compress WAV Files Effectively' })).toBeVisible();
+  });
+
+  test('Tuesday Micro-answers are accessible and valid', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/what-is-video-codec-micro`);
+    await expect(page.locator('h1')).toContainText('What is a video codec?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does a Video Codec Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-variable-bitrate-vbr-micro`);
+    await expect(page.locator('h1')).toContainText('What is variable bitrate (VBR)?');
+
+    await page.goto(`${baseUrl}/blog/what-is-constant-bitrate-cbr-micro`);
+    await expect(page.locator('h1')).toContainText('What is constant bitrate (CBR)?');
+
+    await page.goto(`${baseUrl}/blog/what-is-video-transcode-micro`);
+    await expect(page.locator('h1')).toContainText('What is video transcode?');
+
+    await page.goto(`${baseUrl}/blog/what-is-visual-lossless-micro`);
+    await expect(page.locator('h1')).toContainText('What is visual lossless?');
+  });
+});
