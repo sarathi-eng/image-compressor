@@ -157,3 +157,70 @@ test.describe('Week 2 Tuesday New Content Pages', () => {
     await expect(page.locator('h1')).toContainText('What is visual lossless?');
   });
 });
+
+test.describe('Week 2 Wednesday New Content Pages', () => {
+  test('WebP Compression guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/webp-compression-2026-manual`);
+    await expect(page.locator('h1')).toContainText('WebP Compression: The Complete 2026 Manual');
+    await expect(page.locator('h2').filter({ hasText: 'What is WebP and When to Use It?' })).toBeVisible();
+  });
+
+  test('GIF Compression guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/gif-compression-loop-weight-low-2026`);
+    await expect(page.locator('h1')).toContainText('GIF Compression: Keeping Loop Weight Low in 2026');
+    await expect(page.locator('h2').filter({ hasText: 'What is GIF and When to Use It?' })).toBeVisible();
+  });
+
+  test('Evolution of Video Encoding guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/evolution-of-video-encoding-2026`);
+    await expect(page.locator('h1')).toContainText('The Evolution of Video Encoding: From H.264 to AV1 in 2026');
+    await expect(page.locator('h2').filter({ hasText: 'Why Video Encoding Matters for Web Developers' })).toBeVisible();
+  });
+
+  test('Understanding Keyframes and GOP guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/understanding-keyframes-gop-video-compression`);
+    await expect(page.locator('h1')).toContainText('Understanding Keyframes and GOP (Group of Pictures) in Video Compression');
+    await expect(page.locator('h2').filter({ hasText: 'Why Keyframes Matter for Video Editing' })).toBeVisible();
+  });
+
+  test('Role of Hardware Acceleration guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/role-of-hardware-acceleration-video-encoding`);
+    await expect(page.locator('h1')).toContainText('The Role of Hardware Acceleration in Modern Video Encoding');
+    await expect(page.locator('h2').filter({ hasText: 'Why Hardware Acceleration Matters for Modern Creators' })).toBeVisible();
+  });
+
+  test('CompressPro vs FFmpeg comparison page is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/compresspro-vs-ffmpeg-advanced-video-handling`);
+    await expect(page.locator('h1')).toContainText('CompressPro vs. FFmpeg: Which is Better for Advanced Video Handling?');
+    await expect(page.locator('h2').filter({ hasText: 'Deep Dive: CompressPro' })).toBeVisible();
+    await expect(page.locator('table')).toBeVisible();
+  });
+
+  test('Video compression for web developers use case is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/video-compression-for-web-developers-2026`);
+    await expect(page.locator('h1')).toContainText('Video Compression for Web Developers: The 2026 Performance Guide');
+    await expect(page.locator('h2').filter({ hasText: 'Why Video Compression Matters for Web Developers' })).toBeVisible();
+  });
+
+  test('Wednesday Micro-answers are accessible and valid', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/what-is-interlaced-video-micro`);
+    await expect(page.locator('h1')).toContainText('What is interlaced video?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does Interlaced Video Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-alpha-channel-micro`);
+    await expect(page.locator('h1')).toContainText('What is alpha channel?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does Alpha Channel Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-video-rendering-micro`);
+    await expect(page.locator('h1')).toContainText('What is video rendering?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does Video Rendering Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-keyframe-micro`);
+    await expect(page.locator('h1')).toContainText('What is a keyframe?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does a Keyframe Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-container-format-micro`);
+    await expect(page.locator('h1')).toContainText('What is container format?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does Container Format Work?' })).toBeVisible();
+  });
+});
