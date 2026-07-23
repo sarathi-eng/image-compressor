@@ -224,3 +224,64 @@ test.describe('Week 2 Wednesday New Content Pages', () => {
     await expect(page.locator('h2').filter({ hasText: 'How Does Container Format Work?' })).toBeVisible();
   });
 });
+
+test.describe('Week 2 Thursday New Content Pages', () => {
+  test('High-Fidelity Audio Compression guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/high-fidelity-audio-compression-flac-vs-mp3-2026`);
+    await expect(page.locator('h1')).toContainText('High-Fidelity Audio Compression: FLAC vs. MP3');
+    await expect(page.locator('h2').filter({ hasText: 'Why High-Fidelity Audio Compression Matters' })).toBeVisible();
+  });
+
+  test('Optimizing Academic Papers guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/optimizing-academic-research-papers-pdf-guide-2026`);
+    await expect(page.locator('h1')).toContainText('Optimizing Academic and Research Papers: The Complete PDF Guide');
+    await expect(page.locator('h2').filter({ hasText: 'The Critical Importance of Document Optimization in Academia' })).toBeVisible();
+  });
+
+  test('Compress Large PDFs guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/how-to-compress-large-pdfs-with-embedded-images-2026`);
+    await expect(page.locator('h1')).toContainText('How to Compress Large PDFs with Embedded Images Without Quality Loss');
+    await expect(page.locator('h2').filter({ hasText: 'The Battle Against Media-Heavy Document Bloat' })).toBeVisible();
+  });
+
+  test('CompressPro vs PDF Compressor comparison page is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/compresspro-vs-pdf-compressor-2026`);
+    await expect(page.locator('h1')).toContainText('CompressPro vs. PDF Compressor');
+    await expect(page.locator('h2').filter({ hasText: 'Deep Dive: CompressPro' })).toBeVisible();
+    await expect(page.locator('table')).toBeVisible();
+  });
+
+  test('Students and Educators use case is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/file-compression-for-students-and-educators-2026`);
+    await expect(page.locator('h1')).toContainText('File Compression for Students and Educators: The Complete 2026 Guide');
+    await expect(page.locator('h2').filter({ hasText: 'Why File Compression is Essential for Modern Classrooms' })).toBeVisible();
+  });
+
+  test('FLAC Audio Compression deep dive guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/flac-audio-compression-complete-guide-2026`);
+    await expect(page.locator('h1')).toContainText('The Complete Guide to FLAC Audio Compression');
+    await expect(page.locator('h2').filter({ hasText: 'What is FLAC and When to Use It?' })).toBeVisible();
+  });
+
+  test('Thursday Micro-answers are accessible and valid', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/what-is-flac-micro`);
+    await expect(page.locator('h1')).toContainText('What is FLAC?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does FLAC Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-pdf-compressor-micro`);
+    await expect(page.locator('h1')).toContainText('What is a PDF compressor?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does a PDF Compressor Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/how-to-compress-flac-micro`);
+    await expect(page.locator('h1')).toContainText('How to compress FLAC?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does FLAC Compression Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-lossless-audio-compression-micro`);
+    await expect(page.locator('h1')).toContainText('What is lossless audio compression?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does Lossless Audio Compression Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-id3-tag-micro`);
+    await expect(page.locator('h1')).toContainText('What is an ID3 tag?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does an ID3 Tag Work?' })).toBeVisible();
+  });
+});
