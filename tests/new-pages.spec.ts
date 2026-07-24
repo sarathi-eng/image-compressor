@@ -224,3 +224,64 @@ test.describe('Week 2 Wednesday New Content Pages', () => {
     await expect(page.locator('h2').filter({ hasText: 'How Does Container Format Work?' })).toBeVisible();
   });
 });
+
+test.describe('Week 2 Thursday New Content Pages', () => {
+  test('Legal Compliance guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/pdf-optimization-legal-compliance-2026`);
+    await expect(page.locator('h1')).toContainText('Advanced PDF Optimization for Legal and Compliance Workflows in 2026');
+    await expect(page.locator('h2').filter({ hasText: 'Why PDF Optimization Matters for Legal and Compliance Workflows' })).toBeVisible();
+  });
+
+  test('Embedded Fonts guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/compress-pdf-embedded-fonts-vector-graphics`);
+    await expect(page.locator('h1')).toContainText('How to Compress PDF Files with Embedded Fonts and Vector Graphics');
+    await expect(page.locator('h2').filter({ hasText: 'Why Compressing Fonts and Vector Graphics in PDFs is Vital' })).toBeVisible();
+  });
+
+  test('Academic Archiving guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/document-compression-academic-research-archiving-2026`);
+    await expect(page.locator('h1')).toContainText('The Role of Document Compression in Academic Research and Archiving');
+    await expect(page.locator('h2').filter({ hasText: 'Why Academic Archives and Research Papers Demand Optimization' })).toBeVisible();
+  });
+
+  test('CompressPro vs PDFUtility comparison is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/compresspro-vs-pdfutility-2026`);
+    await expect(page.locator('h1')).toContainText('CompressPro vs. PDFUtility: Which is Better for Document Workflows?');
+    await expect(page.locator('h2').filter({ hasText: 'Deep Dive: CompressPro' })).toBeVisible();
+    await expect(page.locator('table')).toBeVisible();
+  });
+
+  test('Legal Use Case guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/pdf-compression-for-legal-professionals-2026`);
+    await expect(page.locator('h1')).toContainText('PDF Compression for Legal Professionals: The Complete 2026 Guide');
+    await expect(page.locator('h2').filter({ hasText: 'Why PDF Compression is Crucial in the Legal Sector' })).toBeVisible();
+  });
+
+  test('PDF/A Archiving guide is accessible', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/pdf-a-archiving-compression-complete-guide-2026`);
+    await expect(page.locator('h1')).toContainText('PDF/A Archiving Compression: The Complete 2026 Guide');
+    await expect(page.locator('h2').filter({ hasText: 'What is PDF/A and When Should It Be Used?' })).toBeVisible();
+  });
+
+  test('Thursday Micro-answers are accessible and valid', async ({ page }) => {
+    await page.goto(`${baseUrl}/blog/what-is-pdf-linearisation-micro`);
+    await expect(page.locator('h1')).toContainText('What is PDF linearisation?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does PDF Linearisation Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-jbig2-compression-micro`);
+    await expect(page.locator('h1')).toContainText('What is JBIG2 compression?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does JBIG2 Compression Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-flate-compression-micro`);
+    await expect(page.locator('h1')).toContainText('What is Flate compression?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does Flate Compression Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-pdf-ua-micro`);
+    await expect(page.locator('h1')).toContainText('What is PDF/UA?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does PDF/UA Work?' })).toBeVisible();
+
+    await page.goto(`${baseUrl}/blog/what-is-interactive-pdf-micro`);
+    await expect(page.locator('h1')).toContainText('What is an interactive PDF?');
+    await expect(page.locator('h2').filter({ hasText: 'How Does an Interactive PDF Work?' })).toBeVisible();
+  });
+});
